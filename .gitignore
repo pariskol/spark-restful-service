@@ -1,0 +1,15 @@
+.classpath
+.project
+.settings/
+dist
+target
+node_modules/
+package-lock.json
+bin/
+log/
+logs/
+*.log
+*.properties
+apk/
+static/
+*.db

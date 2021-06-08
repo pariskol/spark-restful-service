@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<!-- saved from url=(0046)https://gpotter2.github.io/tutos/en/sslsockets -->
+<html lang="en" class="js fontawesome-i2svg-active fontawesome-i2svg-complete"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+
+<!-- begin _includes/seo.html --><title>SSLSockets Tutorial - gpotter2’s random stuff</title>
+<meta name="description" content="A steb-by-step tutorial on how to create SSLSockets in Java/Android.">
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="gpotter2&#39;s random stuff">
+<meta property="og:title" content="SSLSockets Tutorial">
+<meta property="og:url" content="https://gpotter2.github.io/tutos/en/sslsockets">
+
+
+  <meta property="og:description" content="A steb-by-step tutorial on how to create SSLSockets in Java/Android.">
+
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">svg:not(:root).svg-inline--fa{overflow:visible}.svg-inline--fa{display:inline-block;font-size:inherit;height:1em;overflow:visible;vertical-align:-.125em}.svg-inline--fa.fa-lg{vertical-align:-.225em}.svg-inline--fa.fa-w-1{width:.0625em}.svg-inline--fa.fa-w-2{width:.125em}.svg-inline--fa.fa-w-3{width:.1875em}.svg-inline--fa.fa-w-4{width:.25em}.svg-inline--fa.fa-w-5{width:.3125em}.svg-inline--fa.fa-w-6{width:.375em}.svg-inline--fa.fa-w-7{width:.4375em}.svg-inline--fa.fa-w-8{width:.5em}.svg-inline--fa.fa-w-9{width:.5625em}.svg-inline--fa.fa-w-10{width:.625em}.svg-inline--fa.fa-w-11{width:.6875em}.svg-inline--fa.fa-w-12{width:.75em}.svg-inline--fa.fa-w-13{width:.8125em}.svg-inline--fa.fa-w-14{width:.875em}.svg-inline--fa.fa-w-15{width:.9375em}.svg-inline--fa.fa-w-16{width:1em}.svg-inline--fa.fa-w-17{width:1.0625em}.svg-inline--fa.fa-w-18{width:1.125em}.svg-inline--fa.fa-w-19{width:1.1875em}.svg-inline--fa.fa-w-20{width:1.25em}.svg-inline--fa.fa-pull-left{margin-right:.3em;width:auto}.svg-inline--fa.fa-pull-right{margin-left:.3em;width:auto}.svg-inline--fa.fa-border{height:1.5em}.svg-inline--fa.fa-li{width:2em}.svg-inline--fa.fa-fw{width:1.25em}.fa-layers svg.svg-inline--fa{bottom:0;left:0;margin:auto;position:absolute;right:0;top:0}.fa-layers{display:inline-block;height:1em;position:relative;text-align:center;vertical-align:-.125em;width:1em}.fa-layers svg.svg-inline--fa{-webkit-transform-origin:center center;transform-origin:center center}.fa-layers-counter,.fa-layers-text{display:inline-block;position:absolute;text-align:center}.fa-layers-text{left:50%;top:50%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%);-webkit-transform-origin:center center;transform-origin:center center}.fa-layers-counter{background-color:#ff253a;border-radius:1em;-webkit-box-sizing:border-box;box-sizing:border-box;color:#fff;height:1.5em;line-height:1;max-width:5em;min-width:1.5em;overflow:hidden;padding:.25em;right:0;text-overflow:ellipsis;top:0;-webkit-transform:scale(.25);transform:scale(.25);-webkit-transform-origin:top right;transform-origin:top right}.fa-layers-bottom-right{bottom:0;right:0;top:auto;-webkit-transform:scale(.25);transform:scale(.25);-webkit-transform-origin:bottom right;transform-origin:bottom right}.fa-layers-bottom-left{bottom:0;left:0;right:auto;top:auto;-webkit-transform:scale(.25);transform:scale(.25);-webkit-transform-origin:bottom left;transform-origin:bottom left}.fa-layers-top-right{right:0;top:0;-webkit-transform:scale(.25);transform:scale(.25);-webkit-transform-origin:top right;transform-origin:top right}.fa-layers-top-left{left:0;right:auto;top:0;-webkit-transform:scale(.25);transform:scale(.25);-webkit-transform-origin:top left;transform-origin:top left}.fa-lg{font-size:1.3333333333em;line-height:.75em;vertical-align:-.0667em}.fa-xs{font-size:.75em}.fa-sm{font-size:.875em}.fa-1x{font-size:1em}.fa-2x{font-size:2em}.fa-3x{font-size:3em}.fa-4x{font-size:4em}.fa-5x{font-size:5em}.fa-6x{font-size:6em}.fa-7x{font-size:7em}.fa-8x{font-size:8em}.fa-9x{font-size:9em}.fa-10x{font-size:10em}.fa-fw{text-align:center;width:1.25em}.fa-ul{list-style-type:none;margin-left:2.5em;padding-left:0}.fa-ul>li{position:relative}.fa-li{left:-2em;position:absolute;text-align:center;width:2em;line-height:inherit}.fa-border{border:solid .08em #eee;border-radius:.1em;padding:.2em .25em .15em}.fa-pull-left{float:left}.fa-pull-right{float:right}.fa.fa-pull-left,.fab.fa-pull-left,.fal.fa-pull-left,.far.fa-pull-left,.fas.fa-pull-left{margin-right:.3em}.fa.fa-pull-right,.fab.fa-pull-right,.fal.fa-pull-right,.far.fa-pull-right,.fas.fa-pull-right{margin-left:.3em}.fa-spin{-webkit-animation:fa-spin 2s infinite linear;animation:fa-spin 2s infinite linear}.fa-pulse{-webkit-animation:fa-spin 1s infinite steps(8);animation:fa-spin 1s infinite steps(8)}@-webkit-keyframes fa-spin{0%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes fa-spin{0%{-webkit-transform:rotate(0);transform:rotate(0)}100%{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}.fa-rotate-90{-webkit-transform:rotate(90deg);transform:rotate(90deg)}.fa-rotate-180{-webkit-transform:rotate(180deg);transform:rotate(180deg)}.fa-rotate-270{-webkit-transform:rotate(270deg);transform:rotate(270deg)}.fa-flip-horizontal{-webkit-transform:scale(-1,1);transform:scale(-1,1)}.fa-flip-vertical{-webkit-transform:scale(1,-1);transform:scale(1,-1)}.fa-flip-both,.fa-flip-horizontal.fa-flip-vertical{-webkit-transform:scale(-1,-1);transform:scale(-1,-1)}:root .fa-flip-both,:root .fa-flip-horizontal,:root .fa-flip-vertical,:root .fa-rotate-180,:root .fa-rotate-270,:root .fa-rotate-90{-webkit-filter:none;filter:none}.fa-stack{display:inline-block;height:2em;position:relative;width:2.5em}.fa-stack-1x,.fa-stack-2x{bottom:0;left:0;margin:auto;position:absolute;right:0;top:0}.svg-inline--fa.fa-stack-1x{height:1em;width:1.25em}.svg-inline--fa.fa-stack-2x{height:2em;width:2.5em}.fa-inverse{color:#fff}.sr-only{border:0;clip:rect(0,0,0,0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px}.sr-only-focusable:active,.sr-only-focusable:focus{clip:auto;height:auto;margin:0;overflow:visible;position:static;width:auto}</style><link rel="canonical" href="https://gpotter2.github.io/tutos/en/sslsockets">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="https://gpotter2.github.io/feed.xml" type="application/atom+xml" rel="alternate" title="gpotter2&#39;s random stuff Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="./SSLSockets Tutorial - gpotter2’s random stuff_files/main.css">
+
+<!--[if IE ]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  <script src="./SSLSockets Tutorial - gpotter2’s random stuff_files/embed.js" data-timestamp="1616277934926"></script><style id="fit-vids-style">.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}</style><link rel="prefetch" as="style" href="https://c.disquscdn.com/next/embed/styles/lounge.c82b267b396dfbc10ae5113342115da8.css"><link rel="prefetch" as="script" href="https://c.disquscdn.com/next/embed/common.bundle.f485ba8b89bf2153fdb9f493ec342aed.js"><link rel="prefetch" as="script" href="https://c.disquscdn.com/next/embed/lounge.bundle.23a4221792e0033ef287b443e614e232.js"><link rel="prefetch" as="script" href="https://disqus.com/next/config.js"><script src="./SSLSockets Tutorial - gpotter2’s random stuff_files/alfie_v4.63f1ab6d6b9d5807dc0c94ef3fe0b851.js" async="" charset="UTF-8"></script></head>
+
+  <body class="layout--single" style="margin-bottom: 219.25px;">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="https://gpotter2.github.io/">gpotter2's random stuff</a>
+        <ul class="visible-links"></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button" count="0" style="">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+
+  <article class="page" itemscope="" itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="SSLSockets Tutorial">
+    <meta itemprop="description" content="DISCLAIMER: This tutorial was written for a French forum in 2015. This version is a translation that I made quickly: it probably has mistranslations. Please share them in the comments, or update this page on GitHub :) . French version of the tutorial">
+    
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">SSLSockets Tutorial
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p class="notice--warning">DISCLAIMER: This tutorial was written for a French forum in 2015. This version is a translation that I made quickly: it probably has mistranslations. Please share them in the comments, or update this page on GitHub :) <img src="./SSLSockets Tutorial - gpotter2’s random stuff_files/langue.png" alt="">. <a href="https://gpotter2.github.io/tutos/sslsockets">French version of the tutorial</a></p>
+
+<p>In this tutorial, we’ll see how to create secure sockets (encrypted with TLS or SSL), in Java/Android. This tutorial also explains how to handle backward-compatibility with the older versions of Android for TLS/SSL <img src="./SSLSockets Tutorial - gpotter2’s random stuff_files/heureux.png" alt="">. It explains how to create SSLSockets, which replace normal Sockets, but not how to use them!</p>
+
+<p class="notice--danger">If you have never used Socket / ServerSocket, this is not where you will learn it. I recommend looking it up.</p>
+
+<p>A few months ago, I was trying making a server-client system in Java, where each was compiled in .jar. At some point, I thought it would be nice to make the connection using secure Sockets, so that nobody could interoperate my secret messages :)</p>
+
+<p>After a little research on the Web, I learned that it was necessary to use SSLSocketFactory, but couldn’t really find any valuable examples, for instance that were not using <code class="highlighter-rouge">System.setProperty</code> hacks. Some docs are 10 years old, and use inexistent functions. Moreover, using Android, nothing worked, and I got unclear “wrong keystore version” messages.</p>
+
+<p class="notice--info">For those who use Android, it’s the same principle, only some points change in the creation of certificates. Those will be clearly marked.</p>
+
+<h2 id="part-0-before-you-start">Part 0: Before you start</h2>
+
+<p>You need to know how to use <code class="highlighter-rouge">Socket</code> and <code class="highlighter-rouge">ServerSocket</code>. This tutorial teaches how to create SSLSocket and SSLServerSocket, to replace them; not HOW to use them.</p>
+
+<p class="notice--danger">Otherwise, I advise you to look it up online :)</p>
+
+<h2 id="softwares">Softwares</h2>
+
+<p>We will use Java (of course) and <strong>Porteclé</strong>, a certificate manager software with a downloadable graphical interface <a href="https://sourceforge.net/projects/portecle/">here</a>.</p>
+
+<p class="notice--warning">Android uses the BouncyCastle cryptography system, while Java uses its own libraries. Thus, Android uses the BKS (for BouncyCastle) and Java JKS (Java Key Store) formats. For android, you have to pay attention to the notes throughout the tutorial explaining how to adapt the code from Java to Android.</p>
+
+<h2 id="part-1-creating-certificates">Part 1: Creating certificates</h2>
+
+<p class="notice--info"><strong>If you know what you are doing</strong> (already have the certificates, or know how to build them using easy-rsa or similar, <strong>feel free to skip this part</strong> :)</p>
+
+<p>To create secure sockets, you must have certificates. To continue, it would be best to understand what an asymmetric certificate is, though it’s not compulsory :/</p>
+
+<p class="notice--info">If you do not know what a certificate is, I recommend the wikipedia page.</p>
+
+<p>In this part, we will create certificates in the form of Keystore, a format used by Java and Android. These Keystores are basically envelopes that contain either a public or private certificate. The format used by Java is the <strong>JKS: Java Key Store</strong>.</p>
+
+<p class="notice--warning">We can create certificates using easy-rsa, but for simplicity, here we will use <strong>Porteclé</strong>, which runs in Java. It has a graphical interface and is therefore easy to use.</p>
+
+<h2 id="android-certificates">Android certificates</h2>
+
+<p class="notice--warning">This part is about Android ONLY, in java, go to step 1</p>
+
+<p>For android, you will need to use the <strong>BKS</strong> instead of the JKS. It’s an Android specificity. Android only works with BKS, and Java only with JKS.</p>
+
+<p>Thus, it will be necessary to select <strong>BKS</strong> instead of the <strong>JKS</strong> when building the certificates (either private or public) that will be installed and used under android.</p>
+
+<h2 id="creating-certificates">Creating certificates</h2>
+
+<p>Below is a step-by-step <strong>Porteclé</strong> tutorial, to easily create the two <strong>JKS</strong> (or <strong>BKS</strong>) keystores, one for the server and the other for the client.</p>
+
+<h3 id="step-1-launch">Step 1: Launch</h3>
+
+<p>Start “Porte clé”</p>
+
+<p>&nbsp;<img src="./SSLSockets Tutorial - gpotter2’s random stuff_files/Etappe 1.png" alt=""></p>
+
+<h3 id="step-2-choose-the-type-of-the-server-key">Step 2: Choose the type of the server key</h3>
+
+<p class="notice--warning">For Android: If the SERVER runs on Android (?!), we put <strong>BKS</strong> instead of <strong>JKS</strong>.</p>
+
+<p>Click on New -&gt; <strong>JKS</strong> for Java (<strong>BKS</strong> for the Android SERVER)</p>
+
+<p>&nbsp;<img src="./SSLSockets Tutorial - gpotter2’s random stuff_files/Etappe 2_5.png" alt=""></p>
+
+<h3 id="step-3-the-private-server-key">Step 3: The private server key</h3>
+
+<p>Let’s create a private key:</p>
+
+<p>&nbsp;<img src="./SSLSockets Tutorial - gpotter2’s random stuff_files/Etappe 3.1.png" alt=""></p>
+
+<p>In RSA 4096 (or 2048) (the more the safer, but the heavier <img src="./SSLSockets Tutorial - gpotter2’s random stuff_files/ninja.png" alt="">)</p>
+
+<p>&nbsp;<img src="./SSLSockets Tutorial - gpotter2’s random stuff_files/Etappe 3.2.png" alt=""></p>
+
+<p>And fill in the form, selecting SHA256withRSA (or better). It is up to date and secure.</p>
+
+<p class="notice--info">“Optional” fields can be left blank</p>
+
+<p><img src="./SSLSockets Tutorial - gpotter2’s random stuff_files/Etappe 3.31.png" alt=""></p>
+
+<p>Then press OK.</p>
+
+<p>Then we enter an alias. This is the nickname of the certificate. You can put whatever you want:</p>
+
+<p>&nbsp;<img src="./SSLSockets Tutorial - gpotter2’s random stuff_files/Etappe 3.4_6.31.png" alt=""></p>
+
+<p>Let’s enter a password for the certificate.
+This password must be saved or stored as it will be used later.</p>
+
+<p class="notice--warning">From now on, we will call this password: <code class="highlighter-rouge">PASSWORD1</code></p>
+
+<p>&nbsp;<img src="./SSLSockets Tutorial - gpotter2’s random stuff_files/Etappe 3.5_3.7_6.4.png" alt=""></p>
+
+<p>Finally, we save the key:</p>
+
+<p>&nbsp;<img src="./SSLSockets Tutorial - gpotter2’s random stuff_files/Etappe 3.6.png" alt=""></p>
+
+<p>With, to make this course more simple, the same password that we noted previously.</p>
+
+<p class="notice--warning">This password is also <code class="highlighter-rouge">PASSWORD1</code></p>
+<p>&nbsp;
+&nbsp;<img src="./SSLSockets Tutorial - gpotter2’s random stuff_files/Etappe 3.5_3.7_6.41.png" alt=""></p>
+
+<p>Let’s save it somewhere:</p>
+
+<p>&nbsp;<img src="./SSLSockets Tutorial - gpotter2’s random stuff_files/Etappe 3.8.png" alt=""></p>
+
+<p class="notice--info">We just made the private key!</p>
+
+<p>Now we will take care of the public key. For that, we will need to generate the public certificate from the private key.</p>
+
+<h3 id="step-4-export-the-public-key">Step 4: Export the public key</h3>
+
+<p>Let’s extract the public certificate. Still on the private key:</p>
+
+<p>-&gt; Export</p>
+
+<p>&nbsp;<img src="./SSLSockets Tutorial - gpotter2’s random stuff_files/Etappe 4.1.png" alt=""></p>
+
+<p>Pick “Head certificate”, and “DER”.</p>
+
+<p>&nbsp;<img src="./SSLSockets Tutorial - gpotter2’s random stuff_files/Etappe 4.2.png" alt=""></p>
+
+<p>Let’s save it:</p>
+
+<p>&nbsp;<img src="./SSLSockets Tutorial - gpotter2’s random stuff_files/Etappe 4.3.png" alt=""></p>
+
+<p class="notice--warning">This file will be called <strong>CERTIFICAT_EXT</strong> from now on.</p>
+
+<p class="notice--info">To ensure backward compatibility with older versions of Android (API 16 and below), please follow <strong>Part 2</strong> for this file now (as long as it is open). Then resume the steps from here.</p>
+
+<p>We are now done with the private key!</p>
+
+<h3 id="step-5-choose-the-type-of-the-public-key">Step 5: Choose the type of the public key</h3>
+
+<p class="notice--warning">If you want to create a client on Android you have to put <strong>BKS</strong>.</p>
+
+<p>Click on New -&gt; <strong>JKS</strong> for java, and <strong>BKS</strong> for Android.</p>
+
+<p>&nbsp;<img src="./SSLSockets Tutorial - gpotter2’s random stuff_files/Etappe 2_51.png" alt=""></p>
+
+<h3 id="step-6-import-the-certificate">Step 6: Import the certificate</h3>
+
+<p>On the public key, select:</p>
+
+<p>&nbsp;<img src="./SSLSockets Tutorial - gpotter2’s random stuff_files/Etappe 6.1.png" alt=""></p>
+
+<p>Then, select the file <strong>CERTIFICAT_EXT</strong> previously saved, and accept the certificate:</p>
+
+<p>&nbsp;<img src="./SSLSockets Tutorial - gpotter2’s random stuff_files/Etappe 6.21.png" alt=""></p>
+
+<p><img src="./SSLSockets Tutorial - gpotter2’s random stuff_files/Etappe 6.3.png" alt=""></p>
+
+<p>Now pick an alias (certificate nickname). For simplicity, we’ll put the same thing on the private key:</p>
+
+<p>&nbsp;<img src="./SSLSockets Tutorial - gpotter2’s random stuff_files/Etappe 3.4_6.32.png" alt=""></p>
+
+<p>Then save the file. This is the <strong>PUBLIC key</strong>.</p>
+
+<p><img src="./SSLSockets Tutorial - gpotter2’s random stuff_files/Etappe 6.5.png" alt=""></p>
+
+<p><img src="./SSLSockets Tutorial - gpotter2’s random stuff_files/Etappe 3.5_3.7_6.5.png" alt=""></p>
+
+<p>With a password that we note, and save.</p>
+
+<p class="notice--warning">This password is, from now on, <code class="highlighter-rouge">PASSWORD2</code></p>
+
+<p>Let’s save it next to the private key. DO NOT REPLACE THE PRIVATE KEY BY THE PUBLIC! We will need both!</p>
+
+<p><img src="./SSLSockets Tutorial - gpotter2’s random stuff_files/Etappe 6.7.png" alt=""></p>
+
+<p class="notice--info">To ensure backward compatibility with older versions of Android (API 16 and below), please follow <strong>Part 2</strong> for this file now (as long as it is open). Then resume the steps from here.</p>
+
+<p>We’re finally done with the public key.</p>
+
+<p>We now have a <strong>public key</strong> and a <strong>private key</strong>.</p>
+
+<p class="notice--warning">We no longer need the <strong>CERTIFICAT_EXT</strong> file. It can be deleted to no longer confuse.</p>
+
+<h2 id="part-2-certificates-for-android-back-compatibility">Part 2: Certificates for Android back-compatibility</h2>
+
+<h2 id="rotten-android-versions-ahead">Rotten Android versions ahead!</h2>
+
+<p>This part will discuss compatibility with the older and darker versions of Android <img src="./SSLSockets Tutorial - gpotter2’s random stuff_files/diable.png" alt=""></p>
+
+<p class="notice--error">Android versions this old <em>should</em> be dropped. Only those who do maintenance of Apps below API 16 should follow this.</p>
+
+<p>For versions of Android prior to API 16, the BKS which is the modern format had another implementation. Thus <strong>BKS-V1</strong> which corresponds to the old version of BouncyCastle needs to be used (a little prehistoric <img src="./SSLSockets Tutorial - gpotter2’s random stuff_files/pirate.png" alt="">).</p>
+
+<p>To ensure the compatibility between several versions, you will need both certificates in <strong>BKS</strong> and <strong>BKS-V1</strong>. For instance, if your application should work on Android API 16 and 23, it will be necessary to obtain two files, a <strong>BKS</strong> and a <strong>BKS-V1</strong>, and change between them depending on the version of the API. This will shown below in the code part.</p>
+
+<p>This step transforms a BKS key into BKS-V1:</p>
+
+<p><img src="./SSLSockets Tutorial - gpotter2’s random stuff_files/Etappe 7.bmp" alt=""></p>
+
+<p class="notice--info">It should be performed on the <strong>BKS</strong> that we want to duplicate. You’ll need the passwords matching the file ypu want to double (<code class="highlighter-rouge">PASSEWRD1</code> or <code class="highlighter-rouge">PASSWORD2</code>).</p>
+
+<p>Save it under a different file.</p>
+
+<h2 id="part-3-the-code">Part 3: The code</h2>
+
+<p>Ahhh, finally code <img src="./SSLSockets Tutorial - gpotter2’s random stuff_files/zorro.png" alt=""></p>
+
+<p>This one is weird, but commented:</p>
+
+<p class="notice--error">Watch out! If you want to use SSL instead of TLS, you have to change it within the code!</p>
+
+<p class="notice--warning">Even though TLSv1.2 can be replaced by SSL, to support older versions, it’s not recommanded.</p>
+
+<h2 id="utility-class-for-the-server">Utility class for the server:</h2>
+
+<p class="notice--info">Note: in the french version of this tutorial, the code is embed and explained. However you really don’t need it: they are plenty of comments on the GitHub version.</p>
+
+<p><a href="https://github.com/gpotter2/SSLKeystoreFactories/blob/master/src/fr/gpotter2/SSLKeystoreFactories/SSLServerSocketKeystoreFactory.java">SSLServerSocketKeystoreFactory.java</a></p>
+
+<h2 id="utility-class-for-the-client">Utility class for the client:</h2>
+
+<p><a href="https://github.com/gpotter2/SSLKeystoreFactories/blob/master/src/fr/gpotter2/SSLKeystoreFactories/SSLSocketKeystoreFactory.java">SSLSocketKeystoreFactory.java</a></p>
+
+<h2 id="usage">Usage:</h2>
+
+<p class="notice--primary">Uh, thank you but how do I using this?</p>
+
+<p>By replacing the creation of your Socket or ServerSocket with::</p>
+
+<p class="notice--warning">You’ll need the passwords that had to be saved!</p>
+
+<p class="notice--info">Here we assume that the stream comes from a file packed within the <code class="highlighter-rouge">.jar</code>, but it could also be external, in which case you’ll need to replace <code class="highlighter-rouge">this.getClass().getResourceAsStream()</code> with some other stream pointing to the keystore.</p>
+
+<h2 id="for-an-sslserversocket-server">For an SSLServerSocket (server):</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">SSLServerSocket</span> <span class="n">ssocket</span> <span class="o">=</span> <span class="n">SSLServerSocketKeystoreFactory</span><span class="o">.</span><span class="na">getServerSocketWithCert</span><span class="o">(</span><span class="n">port</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">getResourceAsStream</span><span class="o">(</span><span class="s">"/PRIVATE_KEY.jks"</span><span class="o">),</span> <span class="s">"PASSWORD1"</span><span class="o">)</span>
+</code></pre></div></div>
+
+<h2 id="for-an-sslsocket-client">For an SSLSocket (client):</h2>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">SSLSocket</span> <span class="n">socket</span> <span class="o">=</span> <span class="n">SSLSocketKeystoreFactory</span><span class="o">.</span><span class="na">getSocketWithCert</span><span class="o">(</span><span class="n">addresse_ip</span><span class="o">,</span> <span class="n">port</span><span class="o">,</span> <span class="k">this</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">getResourceAsStream</span><span class="o">(</span><span class="s">"/PUBLIC_KEY.jks"</span><span class="o">),</span> <span class="s">"PASSWORD2"</span><span class="o">)</span>
+</code></pre></div></div>
+
+<h2 id="android-only-ahead">Android only ahead</h2>
+
+<p class="notice--warning">This section is for android only!</p>
+
+<p>The latest versions of Android (23+) no longer support SSL, considered obsolete. Thus, it is mandatory to replace the SSL code by <strong>TLSv1.2</strong>.</p>
+
+<h3 id="android-backward-compability">Android backward-compability:</h3>
+
+<p class="notice--error">This section is only for those who wanted to make their app compatible with older versions !!</p>
+
+<p>According to the version of Android, let’s choose the correct certificate version to use, knowing that <strong>JELLY_BEAN_MR1</strong> is the version where <strong>BKS-v1</strong> became <strong>BKS</strong>:</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span> <span class="n">bks_version</span><span class="o">;</span>
+<span class="k">if</span> <span class="o">(</span><span class="n">Build</span><span class="o">.</span><span class="na">VERSION</span><span class="o">.</span><span class="na">SDK_INT</span><span class="o">&gt;</span> <span class="o">=</span> <span class="n">Build</span><span class="o">.</span><span class="na">VERSION_CODES</span><span class="o">.</span><span class="na">JELLY_BEAN_MR1</span><span class="o">)</span> <span class="o">{</span>
+<span class="err">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="n">bks_version</span> <span class="o">=</span> <span class="n">R</span><span class="o">.</span><span class="na">raw</span><span class="o">.</span><span class="na">publickey</span><span class="o">;</span> <span class="c1">// The BKS file</span>
+<span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+<span class="err">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="n">bks_version</span> <span class="o">=</span> <span class="n">R</span><span class="o">.</span><span class="na">raw</span><span class="o">.</span><span class="na">publickey_v1</span><span class="o">;</span> <span class="c1">// The BKS file (v-1)</span>
+<span class="o">}</span>
+<span class="n">InputStream</span> <span class="n">stream</span> <span class="o">=</span> <span class="n">getResources</span> <span class="o">().</span> <span class="n">OpenRawResource</span> <span class="o">(</span><span class="n">bks_version</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>And then we use this stream as argument for the classes presented above.</p>
+
+<h2 id="part-4-conclusion">Part 4: Conclusion</h2>
+
+<p>This will create a connection between a server and a client.</p>
+
+<p>That’s it ! I hope it helped <a href="./SSLSockets Tutorial - gpotter2’s random stuff_files/langue.png" class="image-popup"></a> !</p>
+
+<h2 id="annex">Annex:</h2>
+
+<p><a href="https://github.com/gpotter2/SSLKeystoreFactories">Full code</a>&nbsp;(MIT <a href="./SSLSockets Tutorial - gpotter2’s random stuff_files/langue.png" class="image-popup"></a>)</p>
+
+<p><a href="https://android-developers.blogspot.fr/2013/02/using-cryptography-to-store-credentials.html">Android 4.2: new cryptography</a>&nbsp;(explanation of why Android has abandoned the BKS-1)</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="https://gpotter2.github.io/tutos/sslsockets" class="pagination--pager" title="Tutoriel SSLSockets
+">Previous</a>
+    
+    
+      <a href="https://gpotter2.github.io/tutos/en/sslsockets#" class="pagination--pager disabled">Next</a>
+    
+  </nav>
+
+    </div>
+
+    
+      <div class="page__comments">
+  
+  
+      <h4 class="page__comments-title">Comments</h4>
+      <section id="disqus_thread"><iframe id="dsq-app2609" name="dsq-app2609" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" width="100%" src="./SSLSockets Tutorial - gpotter2’s random stuff_files/saved_resource.html" style="width: 1px !important; min-width: 100% !important; border: none !important; overflow: hidden !important; height: 395px !important;" horizontalscrolling="no" verticalscrolling="no"></iframe></section>
+    
+</div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+
+    
+
+    <li><a href="https://gpotter2.github.io/feed.xml"><svg class="svg-inline--fa fa-rss-square fa-w-14 fa-fw" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="rss-square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M400 32H48C21.49 32 0 53.49 0 80v352c0 26.51 21.49 48 48 48h352c26.51 0 48-21.49 48-48V80c0-26.51-21.49-48-48-48zM112 416c-26.51 0-48-21.49-48-48s21.49-48 48-48 48 21.49 48 48-21.49 48-48 48zm157.533 0h-34.335c-6.011 0-11.051-4.636-11.442-10.634-5.214-80.05-69.243-143.92-149.123-149.123-5.997-.39-10.633-5.431-10.633-11.441v-34.335c0-6.535 5.468-11.777 11.994-11.425 110.546 5.974 198.997 94.536 204.964 204.964.352 6.526-4.89 11.994-11.425 11.994zm103.027 0h-34.334c-6.161 0-11.175-4.882-11.427-11.038-5.598-136.535-115.204-246.161-251.76-251.76C68.882 152.949 64 147.935 64 141.774V107.44c0-6.454 5.338-11.664 11.787-11.432 167.83 6.025 302.21 141.191 308.205 308.205.232 6.449-4.978 11.787-11.432 11.787z"></path></svg><!-- <i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> --> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">© 2019 gpotter2's random stuff. Powered by <a href="https://jekyllrb.com/" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="./SSLSockets Tutorial - gpotter2’s random stuff_files/main.min.js"></script>
+  <script defer="" src="./SSLSockets Tutorial - gpotter2’s random stuff_files/all.js" integrity="sha384-g5uSoOSBd7KkhAMlnQILrecXvzst9TdC09/VM+pjDTCM+1il8RHz5fKANTFFb+gQ" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+    
+  <script>
+    var disqus_config = function () {
+      this.page.url = "https://gpotter2.github.io/tutos/en/sslsockets";  // Replace PAGE_URL with your page's canonical URL variable
+      this.page.identifier = "/tutos/en/sslsockets_en"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    (function() { // DON'T EDIT BELOW THIS LINE
+      var d = document, s = d.createElement('script');
+      s.src = 'https://gpotter2.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+  
+
+
+
+
+
+  
+
+<iframe style="display: none;" src="./SSLSockets Tutorial - gpotter2’s random stuff_files/saved_resource(1).html"></iframe></body></html>
